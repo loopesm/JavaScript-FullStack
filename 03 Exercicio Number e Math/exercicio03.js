@@ -6,7 +6,13 @@ let numero = document.getElementById("numero")
 
 let texto = document.getElementById("texto")
 
+let text = document.getElementsByClassName("texto")
+
 numero.innerHTML = num1
+
+function mudaBackground (text){
+    background = red;
+}
 
 texto.innerHTML += (`<p> A Raiz quadrada do seu Número é = ${num1 ** 0.5} </p>`)
 texto.innerHTML += (`<p> Seu número é inteiro ? = ${ Number.isInteger(num1)} </p>`)
