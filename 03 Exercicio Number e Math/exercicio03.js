@@ -12,22 +12,37 @@ numero.innerHTML = num1
 
     // ALTERAR PROPRIEDADE CSS 
 
-        const classeQueDesejoAlterar = ".texto";
+        const classeQueDesejoAlterar1 = ".texto";
 
         /* Lista e percorre todos os Stylesheet da página */
         for (let stylesheet of document.styleSheets) {
 
             /* Lista e filtra a regra do CSS */
-            let cssRuleList = [...document.styleSheets[0].cssRules].filter(rule => rule.selectorText == classeQueDesejoAlterar)
+            let cssRuleList = [...document.styleSheets[0].cssRules].filter(rule => rule.selectorText == classeQueDesejoAlterar1)
 
             /* Percorre todas as regras encontradas e aplica o CSS. */
             for (let cssRule of cssRuleList) {
-                cssRule.style.setProperty("display", "inline-block")
+
+                cssRule.style.setProperty("position","relative")
                 cssRule.style.setProperty("width", "300px")
+                cssRule.style.setProperty("left", "50%")
                 cssRule.style.setProperty("background", "red")
                 cssRule.style.setProperty("color", "yellow")
-                cssRule.style.setProperty("padding", "30px")
-                cssRule.style.setProperty("margin-left", "600px")
+                cssRule.style.setProperty("margin-left", "-150px")
+            }
+        }
+
+        const classeQueDesejoAlterar2 = ".container";
+
+        /* Lista e percorre todos os Stylesheet da página */
+        for (let stylesheet of document.styleSheets) {
+
+            /* Lista e filtra a regra do CSS */
+            let cssRuleList = [...document.styleSheets[0].cssRules].filter(rule => rule.selectorText == classeQueDesejoAlterar2)
+
+            /* Percorre todas as regras encontradas e aplica o CSS. */
+            for (let cssRule of cssRuleList) {
+                cssRule.style.setProperty("text-align", "center")
             }
         }
 
