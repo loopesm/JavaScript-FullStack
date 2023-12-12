@@ -7,4 +7,14 @@ h2{
 }
 .container{
 
+    width: 300px;
+    background: lightblue;
+
+}
+
+#container{
+
+    width: 300px;
+    background: lightblue;
+    
 }
