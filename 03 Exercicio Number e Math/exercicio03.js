@@ -16,14 +16,3 @@ texto.innerHTML += (`<p> O que foi digitado foi algo que não é um número ? = 
 texto.innerHTML += (`<p> Arredondado para baixo = ${ Math.floor(num1)} </p>`)
 texto.innerHTML += (`<p> Arredondado para cima = ${ Math.ceil(num1)} </p>`)
 texto.innerHTML += (`<p> Com apenas 2 casas decimais = ${ num1.toFixed(2)} </p>`)
-
-// ALTERAR PROPRIEDADE CSS 
-
-function mudarMargem(container){
-
-    container.style.margin.left = 'auto'
-    container.style.margin.right = 'auto'
-
-}
-
-// FIM ALTERAR PROPRIEDADE CSS
