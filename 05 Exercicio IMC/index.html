@@ -1,36 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculo IMC</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
     <section class="container">
+      <h1>Calculo de IMC</h1>
 
-        <h1>Calculo de IMC</h1>
+      <p>Digite seus dados e veja como está seu IMC:</p>
 
-        <p>Digite seus dados e veja como está seu IMC:</p>
+      <form action="">
+        <label for="peso">Peso ( em Kg )</label>
+        <input type="text" id="peso" />
 
-        <form action="">
+        <label for="altura">Altura ( em Metros )</label>
+        <input type="text" id="altura" />
 
-            <label for="peso">Peso ( em Kg )</label>
-            <input type="text" id="peso">
+        <button>Calcular</button>
+      </form>
 
-            <label for="altura">Altura ( em Metros )</label>
-            <input type="text" id="altura">
-
-            <button>Calcular</button>
-
-        </form>
-
-
+      <table>
+        <thead>
+            <tr>
+                <th>IMC</th>
+                <th>Clacificação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Abaixo de 18,5</td>
+                <td>Abaixo do Peso</td>
+            </tr>
+            <tr>
+                <td>Entre 18,6 e 24,9</td>
+                <td>Peso Ideal</td>
+            </tr>
+            <tr>
+                <td>Entre 25 e 29,9</td>
+                <td>Levemente Acima do Peso</td>
+            </tr>
+            <tr>
+                <td>Entre 30 e 34,9</td>
+                <td>Obesidade Grau I</td>
+            </tr>
+            <tr>
+                <td>Entre 35 e 39,9</td>
+                <td>Obesidade Grau II ( Severa )</td>
+            </tr>
+            <tr>
+                <td>Acima de 40</td>
+                <td>Obesidade Grau III ( Mórbida )</td>
+            </tr>
+        </tbody>
+      </table>
     </section>
-    
-
 
     <script src="./assets/js/main.js"></script>
-</body>
+  </body>
 </html>

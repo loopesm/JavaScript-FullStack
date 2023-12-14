@@ -30,7 +30,7 @@ body{
     margin: 15px auto;
     background: #fff;
     padding: 1px 10px 10px 10px;
-    height: 95vh;
+    height: auto;
     border-radius: 50px;
 }
 
@@ -73,4 +73,12 @@ form button{
     height: 34px;
     width: 50%;
     cursor: pointer;
+}
+
+table{
+    font-size: 12px;
+    font-weight: 700;
+    width: 80%;
+    margin: 0 auto 25px;
+    border: 1px solid #000;
 }
