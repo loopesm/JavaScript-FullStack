@@ -60,7 +60,7 @@ form button:hover{
 }
 
 form button:active{
-    outline: 3px solid red;
+    outline: 2px solid red;
 }
 
 form button{
@@ -76,9 +76,20 @@ form button{
 }
 
 table{
+    border-collapse: collapse;
     font-size: 12px;
     font-weight: 700;
     width: 80%;
     margin: 0 auto 25px;
     border: 1px solid #000;
+}
+
+table tr th{
+    line-height: 25px;
+    background: #d8fdf1;
+}
+
+table tr td{
+    border-top: 1px solid #000;
+    line-height: 15px;
 }
