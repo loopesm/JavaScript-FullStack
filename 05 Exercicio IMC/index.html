@@ -12,15 +12,18 @@
 
       <p>Digite seus dados e veja como está seu IMC:</p>
 
-      <form action="">
+      <form action="/" id="form" class="form">
         <label for="peso">Peso ( em Kg )</label>
-        <input type="text" id="peso" />
+        <input type="text" id="peso" class="peso" name="peso" />
 
         <label for="altura">Altura ( em Metros )</label>
-        <input type="text" id="altura" />
+        <input type="text" id="altura" class="altura" name="altura" />
 
-        <button>Calcular</button>
+        <button type="submit">Calcular</button>
       </form>
+
+      <div class="resultado">
+      </div>
 
       <table>
         <thead>
