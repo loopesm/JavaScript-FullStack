@@ -46,14 +46,14 @@ form.addEventListener('submit', function(evento){
 
 // INICIO CRIAR ELEMENTO NO HTML
 
-function criaElementoP(classNome){
+function criaElementoP(){
 
     const p = document.createElement('p'); // CRIA O ELEMENTO "<P>"
 
     p.classList.add('p-resultado'); // CRIA UMA CLASSE NO ELEMENTO "<P>""
 
     return p; // RETORNA O ELEMENTO "<P>"
-    
+
 }
 
 // FIM CRIAR ELEMENTO NO HTML
@@ -65,6 +65,12 @@ function resultadoIMC(msg, isValid){
     resultado.innerHTML = ""; // ZERA O CONTEÚDO DO ELEMENTO
 
     const p = criaElementoP(); // PEGA O VALOR DE "<P>" RETORNAR PELA FUNÇÃO "CRIA ELEMENTO P"
+
+    if (isValid) {
+        p.classList.add('paragrafoVermelho')
+    } else {
+        p.classList.add('paragrafoVerde')
+    }
 
     resultado.appendChild(p); // INSERE O VALOR DE P NA DIV COM  CLASSE "RESULTADO"
 
