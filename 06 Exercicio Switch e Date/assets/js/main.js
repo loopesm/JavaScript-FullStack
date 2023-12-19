@@ -92,9 +92,9 @@ function dataAtual() {
     segundosAtual = dataHoje.getSeconds();
   }
 
-  const paragrafoData = document.querySelector('.dateNow');
+  const paragrafo = document.querySelector('.dateNow');
 
-  paragrafoData.innerHTML = `${diaSemanaAtual}, ${dataHoje.getDate()} de ${mesAtual} de ${dataHoje.getFullYear()} - ${horaAtual}:${minutosAtual}:${segundosAtual}`;
+  paragrafo.innerHTML = `${diaSemanaAtual}, ${dataHoje.getDate()} de ${mesAtual} de ${dataHoje.getFullYear()} - ${horaAtual}:${minutosAtual}:${segundosAtual}`;
 }
 
 dataAtual();
