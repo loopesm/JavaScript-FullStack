@@ -21,22 +21,25 @@ function meuTimer() {
     }, 1000);
   }
 
+  // SELECIOA O BOTÃO INICIAR E EXECUTA A FUNÇÃO "INICIA RELOGIO"
   botIniciar.addEventListener("click", function () {
     meuContador.classList = "meuContador";
-    clearInterval(timer);
+    clearInterval(timer); // PRECISA ACRESCENTAR PARA NÃO CRIAR VARIOS TIMERS OCULTOS
     iniciaRelogio();
   });
 
+  // SELECIOA O BOTÃO PAUSAR E EXECUTA A FUNÇÃO "INICIA RELOGIO"
   botPausar.addEventListener("click", function () {
     meuContador.classList = "red";
-    clearInterval(timer);
+    clearInterval(timer); // PRECISA ACRESCENTAR PARA NÃO CRIAR VARIOS TIMERS OCULTOS
   });
 
+  // SELECIOA O BOTÃO INICIAR E EXECUTA A FUNÇÃO "INICIA RELOGIO"
   botZerar.addEventListener("click", function () {
     meuContador.classList = "meuContador";
-    clearInterval(timer);
-    meuContador.innerHTML = '00:00:00';
-    segundos = 0;
+    clearInterval(timer); // PRECISA ACRESCENTAR PARA NÃO CRIAR VARIOS TIMERS OCULTOS
+    meuContador.innerHTML = '00:00:00'; // ZERA O CONTADOR NO FRONT-END
+    segundos = 0; // ZERA O CONTADOR NO BACK-END
   });
 }
 
