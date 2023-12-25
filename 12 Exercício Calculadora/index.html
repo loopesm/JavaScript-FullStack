@@ -1,42 +1,67 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exercício</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
     <section class="container">
+      <h1>Exercício - Calculadora</h1>
 
-        <h1>Exercício</h1>
+      <p>Criar uma calculadora completa</p>
 
-        <p>Descrição do Exercício</p>
+      <table class="minhaCalculadora">
+        <tr>
+          <td colspan="4">
+            <input
+              type="text"
+              class="meuDisplay"
+              name="meuDisplay"
+              id="meuDisplay"
+            />
+          </td>
+        </tr>
 
-        <form action="">
+        <tr>
+          <td><button class="btn btn-clear">C</button></td>
+          <td><button class="btn btn-numero">(</button></td>
+          <td><button class="btn btn-numero">)</button></td>
+          <td><button class="btn btn-numero">/</button></td>
+        </tr>
 
-            <label for="input-1">Label 1</label>
-            <input type="text" id="input-1">
+        <tr>
+          <td><button class="btn btn-numero">7</button></td>
+          <td><button class="btn btn-numero">8</button></td>
+          <td><button class="btn btn-numero">9</button></td>
+          <td><button class="btn btn-numero">*</button></td>
+        </tr>
+        
+        <tr>
+          <td><button class="btn btn-numero">4</button></td>
+          <td><button class="btn btn-numero">5</button></td>
+          <td><button class="btn btn-numero">6</button></td>
+          <td><button class="btn btn-numero">+</button></td>
+        </tr>
 
-            <label for="input-2">Label 2</label>
-            <input type="text" id="input-2">
+        <tr>
+            <td><button class="btn btn-numero">1</button></td>
+            <td><button class="btn btn-numero">2</button></td>
+            <td><button class="btn btn-numero">3</button></td>
+            <td><button class="btn btn-numero">-</button></td>
+        </tr>
 
-            <label for="input-3">Label 3</label>
-            <input type="text" id="input-3">
+        <tr>
+            <td><button class="btn btn-numero">.</button></td>
+            <td><button class="btn btn-numero">0</button></td>
+            <td><button class="btn btn-del">&laquo;</button></td>
+            <td><button class="btn btn-igual">=</button></td>
+        </tr>
+        
+    </table>
+</section>
 
-            <label for="input-4">Label 4</label>
-            <input type="text" id="input-4">
-
-            <button>Enviar</button>
-
-        </form>
-
-
-    </section>
-    
-
-
-    <script src="./assets/js/main.js"></script>
-</body>
+<script src="./assets/js/main.js"></script>
+  </body>
 </html>
