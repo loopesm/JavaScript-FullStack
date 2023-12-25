@@ -53,6 +53,7 @@ input{
 
 span{
     margin-bottom: 50px;
+
 }
 
 p{
@@ -63,6 +64,12 @@ p{
 ul{
     list-style: disc;
     text-align: left;
+}
+li{
+    padding-bottom: 2px;
+    padding-top: 2px;
+    margin-right: 15px;
+    border-bottom: 1px solid #000;
 }
 
 input:focus{
@@ -102,4 +109,9 @@ button{
     width: 80%;
     border: 5px solid var(--cor2);
     border-radius: 25px;
+}
+
+.btnExcluir {
+    position: relative;
+
 }
