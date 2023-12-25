@@ -13,14 +13,15 @@ function criaCalculadora() {
 
     pressionaEnter() {
       document.body.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
+        
+        if ( e.key === 'Enter' ) {
           this.realizaConta();
         }
       });
     },
 
     realizaConta() {
-      this.meuDisplay.focus();
+     this.meuDisplay.focus();
       let resultado = this.meuDisplay.value;
 
       try {
@@ -33,6 +34,7 @@ function criaCalculadora() {
         }
 
         this.meuDisplay.value = String(resultado);
+
       } catch (e) {
         alert("Conta Inválida");
         return;
