@@ -81,11 +81,12 @@ function MinhaListaDeTarefas() {
     localStorage.setItem("MinhasTarefas", tarefasJSON);
   }
 
-  // FUNCÇÃO QUE PEGA OS DADOS SALVOS DO JSON NO "LOCAL STORAGE" DO NAVEGADOR
+  // FUNÇÃO QUE PEGA OS DADOS SALVOS DO JSON NO "LOCAL STORAGE" DO NAVEGADOR
   function TarefasSalvas() {
     const tarefas = localStorage.getItem("MinhasTarefas");
     const arrayTarefas = JSON.parse(tarefas);
 
+    // SALVA OS DADOS SALVOS DO JSON EM UM ARRAY "ARRAY TAREFAS"
     for (let tarefa of arrayTarefas) {
       adicionaTarefa(tarefa);
     }
