@@ -55,12 +55,16 @@ function Calculadora() {
 
       if (!conta) {
         alert("Conta Inválida");
+        this.display.value = "";
+        this.display.focus();
         return;
       }
       this.display.value = conta;
       this.display.focus();
     } catch (e) {
       alert("Conta Inválida");
+      this.display.value = "";
+      this.display.focus();
       return;
     }
   };
