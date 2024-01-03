@@ -1,85 +1,79 @@
-// FUNÇÃO QUE CRIA A CALCULADORA COMO UM OBJETO
-function criaCalculadora() {
-  return {
-    // ELEMENTO 'MEU DISPLAY' DO OBJETO ( SELECIONADO PELA CLASSE)
-    meuDisplay: document.querySelector(".meuDisplay"),
+// FUNÇÃO CONSTRUTORA PRINCIAPAL
+function Calculadora() {
+  // SELECIONA O DISPLAY = ELEMENTO DE INPUT
+  this.display = document.querySelector(".meuDisplay");
 
-    // MÉTODO ( UM ELEMENTO DO OBJETO QUE FAZ ALGO) QUE CHAMA
-    //O CLIQUE NOS BOTÕES
-    iniciaCalculadora() {
-      this.cliqueBotoes();
-      this.pressionaEnter();
-    },
+  // A FUNÇÃO "INICIA" FAZ A CHAMADA PARA A FUNÇÃO "CAPTURA DE CLIQUES"
+  this.inicia = () => {
+    this.capturaCliques();
+    this.capturaEnter();
+    this.display.focus();
+  };
 
-    pressionaEnter() {
-      document.body.addEventListener("keypress", (e) => {
-        
-        if ( e.key === 'Enter' ) {
-          this.realizaConta();
-        }
-      });
-    },
+  // FUNÇÃO "CAPTURA CLIQUES"
+  this.capturaCliques = () => {
+    // CAPTURA O EVENTO DE CLIQUE NOS ELEMENTOS
+    document.addEventListener("click", (evento) => {
+      // ADICIONA EM UMA CONSTANTE O ELEMENTO CLICADO
+      const elementoClicado = evento.target;
+      // SE A CLASSE DO ELEMENTO FOR "BTN-NUMERO" ELA CHAMA O MÉTODO "ADDNUMDISPLAY"
+      if (elementoClicado.classList.contains("btn-numero"))
+        this.addNumDisplay(elementoClicado);
+      // SE A CLASSE DO ELEMENTO FOR "BTN-CLEAR"
+      if (elementoClicado.classList.contains("btn-clear")) this.clearDisplay();
+      // SE A CLASSE DO ELEMENTO FOR "BTN-DEL"
+      if (elementoClicado.classList.contains("btn-del")) this.delDisplay();
+      // SE A CLASSE DO ELEMENTO FOR "BTN-IGUAL" ELA REALIZA A CONTA
+      if (elementoClicado.classList.contains("btn-igual"))
+        this.igualResultado();
+    });
+  };
 
-    realizaConta() {
-     this.meuDisplay.focus();
-      let resultado = this.meuDisplay.value;
+  // FUNÇÃO QUE ADICIONA UM CARACTERE NO INPUT
+  this.addNumDisplay = (elementoClicado) => {
+    // PEGA A CONSTANTE "ELEMENTO CLICADO" E ESCREVE NO INPUT NO HTML
+    this.display.value += elementoClicado.innerText;
+    this.display.focus();
+  };
 
-      try {
-        // ESSE CÓDIGO "EVAL" DEIXA O SISTEMA MENOS SEGURO, VERIFICAR MELHOR FORMA DE REALIZAR
-        resultado = eval(resultado);
+  this.clearDisplay = () => {
+    // ATRIBUI UMA STRING VAZIA AO INPUT
+    this.display.value = "";
+    this.display.focus();
+  };
 
-        if (!resultado) {
-          alert("Conta Inválida");
-          return;
-        }
+  this.delDisplay = () => {
+    // EXCLUI O ULTIMO CARATERE DA STRING DO INPUT
+    this.display.value = this.display.value.slice(0, -1);
+    this.display.focus();
+  };
 
-        this.meuDisplay.value = String(resultado);
+  this.igualResultado = () => {
+    // VERIFICA SE CONSEGUE FAZER CONSTA COM O VALOR DO INPUT
+    try {
+      const conta = eval(this.display.value);
 
-      } catch (e) {
+      if (!conta) {
         alert("Conta Inválida");
         return;
       }
-    },
+      this.display.value = conta;
+      this.display.focus();
+    } catch (e) {
+      alert("Conta Inválida");
+      return;
+    }
+  };
 
-    // MÉTODO QUE CAPTURA O CLIQUE NOS BOTÕES E VERIFICAR SE
-    //TEM A CLASSE "BTN-NUMEROS"
-    cliqueBotoes() {
-      // SE FOR EXECUTADO SEM SER ARROW FUNCTION ( "() =>" )
-      // DA ERRO NA HORA DE PUXAR O "BTNPARADISPLAY" POR CAUSA DO
-      // "THIS", MAS COM ARROW NÃO TEM PROBLEMA.
-      document.addEventListener("click", (clique) => {
-        const clicado = clique.target;
-
-        // CONDIÇÃO, QUE CASO SEJA VERDADEIRA, ADICIONA O TEXTO
-        //DO BOTÃO CLICADO NA FUNÇÃO "BTN PARA DISPLAY"
-        if (clicado.classList.contains("btn-numero")) {
-          this.btnParaDisplay(clicado.innerText);
-        }
-        // SE A CLASSE FOR "BTN-CLEAR" ATRIBUI O VALOR VAZIO " " PARA O INPUT
-        else if (clicado.classList.contains("btn-clear")) {
-          this.meuDisplay.value = "";
-        }
-
-        // SE A CLASSE FOR "BTN-DEL" APAGA O ULTIMO CARACTERE DA STRING
-        else if (clicado.classList.contains("btn-del")) {
-          this.meuDisplay.value = this.meuDisplay.value.slice(0, -1);
-        } else if (clicado.classList.contains("btn-igual")) {
-          this.realizaConta();
-        }
-      });
-    },
-
-    // FUNÇÃO QUE PEGA O VALOR ATRIBUIDO DENTRO DA FUNÇÃO
-    //"CLIQUE BOTÕES" E ATRIBUI AO VALOR DO "INPUT" DO "MEU DISPLAY"
-    btnParaDisplay(valor) {
-      this.meuDisplay.value += valor;
-    },
+  // CAPTURA A TECLA DE ENTER SENDO PRESSIONADA
+  this.capturaEnter = () => {
+    this.display.addEventListener("keypress", clique => {
+      if (clique.keyCode === 13){
+        this.igualResultado();
+      }
+    });
   };
 }
 
-// CONSTANTE QUE RECEBE A FUNÇÃO PRINCIPAL "CRIA CALCULADOR"
-const calculadora = criaCalculadora();
-
-// CHAMA O MÉDOTO "INICIA CALCULADORA" CRIADO NO OBJETO GERADO
-// PELA FUNÇÃO "CRIA CALCULADORA"
-calculadora.iniciaCalculadora();
+const calculadora = new Calculadora();
+calculadora.inicia();
