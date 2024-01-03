@@ -32,6 +32,7 @@ function criaCalculadora() {
 
         if (!resultado) {
           alert("Conta Inválida");
+          this.meuDisplay.value = "";
           return;
         }
 
@@ -40,6 +41,7 @@ function criaCalculadora() {
 
       } catch (e) {
         alert("Conta Inválida");
+        this.meuDisplay.value = "";
         return;
       }
     },
