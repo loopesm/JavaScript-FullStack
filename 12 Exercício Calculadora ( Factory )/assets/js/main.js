@@ -9,6 +9,7 @@ function criaCalculadora() {
     iniciaCalculadora() {
       this.cliqueBotoes();
       this.pressionaEnter();
+      this.meuDisplay.focus();
     },
 
     pressionaEnter() {
@@ -16,6 +17,7 @@ function criaCalculadora() {
         
         if ( e.key === 'Enter' ) {
           this.realizaConta();
+          this.meuDisplay.focus();
         }
       });
     },
@@ -34,6 +36,7 @@ function criaCalculadora() {
         }
 
         this.meuDisplay.value = String(resultado);
+        this.meuDisplay.focus();
 
       } catch (e) {
         alert("Conta Inválida");
@@ -54,17 +57,21 @@ function criaCalculadora() {
         //DO BOTÃO CLICADO NA FUNÇÃO "BTN PARA DISPLAY"
         if (clicado.classList.contains("btn-numero")) {
           this.btnParaDisplay(clicado.innerText);
+          this.meuDisplay.focus();
         }
         // SE A CLASSE FOR "BTN-CLEAR" ATRIBUI O VALOR VAZIO " " PARA O INPUT
         else if (clicado.classList.contains("btn-clear")) {
           this.meuDisplay.value = "";
+          this.meuDisplay.focus();
         }
 
         // SE A CLASSE FOR "BTN-DEL" APAGA O ULTIMO CARACTERE DA STRING
         else if (clicado.classList.contains("btn-del")) {
           this.meuDisplay.value = this.meuDisplay.value.slice(0, -1);
+          this.meuDisplay.focus();
         } else if (clicado.classList.contains("btn-igual")) {
           this.realizaConta();
+          this.meuDisplay.focus();
         }
       });
     },
@@ -73,6 +80,7 @@ function criaCalculadora() {
     //"CLIQUE BOTÕES" E ATRIBUI AO VALOR DO "INPUT" DO "MEU DISPLAY"
     btnParaDisplay(valor) {
       this.meuDisplay.value += valor;
+      this.meuDisplay.focus();
     },
   };
 }
