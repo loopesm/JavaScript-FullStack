@@ -1,4 +1,4 @@
-document.addEventListener('click', e => {
+Sdocument.addEventListener('click', e => {
     const el = e.target;
     const tag = el.tagName.toLowerCase();
   
