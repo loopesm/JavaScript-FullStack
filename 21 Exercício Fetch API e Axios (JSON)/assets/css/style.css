@@ -26,11 +26,10 @@ body{
 }
 
 .container {
-    width: 100%;
+    width: 95%;
     margin: 15px auto;
     background: #fff;
     padding: 1px 10px 10px 10px;
-    height: 95vh;
     border-radius: 50px;
 }
 
@@ -73,4 +72,10 @@ form button{
     height: 34px;
     width: 50%;
     cursor: pointer;
+}
+
+.resultado {
+    border: 1px solid #000;
+    margin: 0 auto;
+    width: 90%;
 }
