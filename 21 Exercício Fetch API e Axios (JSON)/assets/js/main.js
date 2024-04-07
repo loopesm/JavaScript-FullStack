@@ -1,29 +1,27 @@
-document.addEventListener('click', e => {
-    const el = e.target;
-    const tag = el.tagName.toLowerCase();
-  
-    if (tag === 'a') {
-      e.preventDefault();
-      carregaPagina(el);
-    }
-  });
-  
-  async function carregaPagina(el) {
-    try {
-      const href = el.getAttribute('href');
-      const response = await fetch(href);
+fetch('pessoas.json')
+  .then(resposta => resposta.json())
+  .then(json => carregaElementosNaPagina(json));
 
-      if(response.status !== 200) throw new Error("ERRO AO CARREGAR A PAGINA")
+// axios('pessoas.json')
+//   .then(resposta => carregaElementosNaPagina(resposta.data));
 
-      const html = await response.text();
+function carregaElementosNaPagina(json) {
+  const table = document.createElement('table');
 
-      carregaResultado(html)
-    } catch(e) {
-      console.error(e);
-    }
+  for(let pessoa of json) {
+    const tr = document.createElement('tr');
+
+    let td1 = document.createElement('td');
+    td1.innerHTML = pessoa.nome;
+    tr.appendChild(td1);
+
+    let td2 = document.createElement('td');
+    td2.innerHTML = pessoa.idade;
+    tr.appendChild(td2);
+
+    table.appendChild(tr);
   }
-  
-  function carregaResultado(response) {
-    const resultado = document.querySelector('.resultado');
-    resultado.innerHTML = response;
-  }
+
+  const resultado = document.querySelector('.resultado');
+  resultado.appendChild(table);
+}
