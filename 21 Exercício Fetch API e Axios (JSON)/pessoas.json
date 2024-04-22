@@ -1,5 +1,5 @@
 [
-  /* {
+  {
     "nome": "Miguel",
     "email": "miguel@email.com.br",
     "salario": 27211,
@@ -919,7 +919,7 @@
     "sexo": "F",
     "cpf": "687.160.725-02"
   },
-  */{
+  {
     "nome": "Ian",
     "email": "ian@outlook.com",
     "salario": 14594,
