@@ -49,7 +49,7 @@ function Calculadora() {
   };
 
   this.igualResultado = () => {
-    // VERIFICA SE CONSEGUE FAZER CONSTA COM O VALOR DO INPUT
+    // VERIFICA SE CONSEGUE FAZER CONTA COM O VALOR DO INPUT
     try {
       const conta = eval(this.display.value);
 
