@@ -6,7 +6,7 @@ const app = express();
 //         POST,    GET,   PUT,         DELETE
 
 app.get("/", (req, res) => {
-  res.send("<h1>Hello World! Moises Lopes - E</h1>");
+  res.send("<h1>Hello World! Moises Lopes</h1>");
 });
 
 app.listen(3000, () => {
