@@ -1,1 +1,0 @@
-mongodb+srv://moiseslopes999:W7n3OheWLawAqA6y@project1.v5vpoxx.mongodb.net/?retryWrites=true&w=majority&appName=Project1
