@@ -1,3 +1,12 @@
-const express = require('express')
-const app = express()
+//           CRIAR   LER   ATUALIZAR  APAGAR     
+// CRUD  ->  CREATE  READ  UPDATE     DELETE
+//           POST    GET   PUT        DELETE
 
+const express = require("express");
+const app = express();
+
+app.get('/', (req, res) => {
+    res.send ('Hello World!')
+})
+
+app.listen(3000)
