@@ -3,5 +3,5 @@ exports.paginaInicial = (req,res) => {
 }
 
 exports.trataPost = (req,res) => {
-    res.send ("Ei sou uma nova rota de POST")
+    res.send ("Vi que você preencheu o formulário")
 }
