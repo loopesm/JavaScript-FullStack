@@ -8,8 +8,8 @@ const app = express();
 app.get('/', (req, res) => {
     res.send (`
         <form action="/" method="POST">
-        Nome: <input type="text" name="nome" >
-        <button>Enviar</button>
+        Nome do Cliente: <input type="text" name="nome" >
+        <button>Enviar Formulário</button>
         </form>
     `)
 })
