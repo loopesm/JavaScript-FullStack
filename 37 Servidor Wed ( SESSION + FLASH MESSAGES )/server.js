@@ -15,6 +15,10 @@ mongoose.connect(process.env.connectionString)
     })
     .catch( e => console.log(e));
 
+const session = require('express-session')
+const MongoStore = require ('connect-mongo')(sessions)
+const flash = requires('connect-flash')
+
 const routes = require('./routes')
 const path = require('path')
 const meuMiddlewares = require('./src/middlewares/middlewares')
@@ -36,4 +40,18 @@ app.on('conectado', () => {
         console.log ("Servidor executando na porta 3000")
     })
 })
+
+const sessionOptions = session({
+    secret: 'chavealeatoriaSHUAHSHDAUSIDHUAISDIJNASD',
+    store: MongoStore.create({ mongoUrl: process.env.connectionString}),
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+        httpOnly: true
+    }
+})
+
+app.use(sessionOptions)
+app.use(flash())
 
