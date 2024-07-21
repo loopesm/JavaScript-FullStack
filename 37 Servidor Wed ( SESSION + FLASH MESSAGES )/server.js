@@ -16,8 +16,8 @@ mongoose.connect(process.env.connectionString)
     .catch( e => console.log(e));
 
 const session = require('express-session')
-const MongoStore = require ('connect-mongo')(sessions)
-const flash = requires('connect-flash')
+const MongoStore = require ('connect-mongo')
+const flash = require('connect-flash')
 
 const routes = require('./routes')
 const path = require('path')
@@ -42,8 +42,8 @@ app.on('conectado', () => {
 })
 
 const sessionOptions = session({
-    secret: 'chavealeatoriaSHUAHSHDAUSIDHUAISDIJNASD',
-    store: MongoStore.create({ mongoUrl: process.env.connectionString}),
+    secret: 'chavealeatoriaSHUAHSHDAUSIDHUAISDIJNAS',
+    store: MongoStore.create({mongoUrl: process.env.connectionString}),
     resave: false,
     saveUninitialized: false,
     cookie: {
