@@ -21,7 +21,12 @@ const flash = require('connect-flash')
 
 const routes = require('./routes')
 const path = require('path')
+const helmet = require('helmet')
+const csrf = require("csurf")
 const meuMiddlewares = require('./src/middlewares/middlewares')
+const checkCsrfError= require('./src/middlewares/middlewares')
+
+app.use(helmet())
 
 app.use(express.urlencoded({extended:true}))
 
@@ -30,6 +35,7 @@ app.use(express.static(path.resolve(__dirname, 'public')))
 app.set('views', path.resolve(__dirname,'src', 'views'))
 app.set('view engine', 'ejs')
 
+app.use(csrf())
 // Nosso Proprio MIddlewares Global que intercepta todas as requisições
 app.use(meuMiddlewares)
 app.use(routes)
@@ -54,4 +60,5 @@ const sessionOptions = session({
 
 app.use(sessionOptions)
 app.use(flash())
+app.use(checkCsrfError)
 
