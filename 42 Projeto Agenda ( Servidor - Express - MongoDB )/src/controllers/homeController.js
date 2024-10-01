@@ -1,4 +1,4 @@
-exports.paginaInicial = (req, res) => {
+exports.index = (req, res) => {
   // **** TESTE SE A SESSÃO ESTÁ SENDO SALVA NO BANCO DE DADOS ****
   // req.session.usuario = { nome: "Moises", logado: true }
 
@@ -13,10 +13,5 @@ exports.paginaInicial = (req, res) => {
   // console.log(req.flash('erro'))
   
   res.render('index', {csrfToken: req.csrfToken()});
-  return;
-};
-
-exports.trataPost = (req, res) => {
-  res.send("Formulario Enviado com sucesso");
   return;
 };
