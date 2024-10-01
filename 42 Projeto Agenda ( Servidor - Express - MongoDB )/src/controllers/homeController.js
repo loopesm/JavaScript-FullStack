@@ -12,11 +12,11 @@ exports.paginaInicial = (req, res) => {
 
   // console.log(req.flash('erro'))
   
-  res.render('index');
+  res.render('index', {csrfToken: req.csrfToken()});
   return;
 };
 
 exports.trataPost = (req, res) => {
-  res.send(req.body);
+  res.send("Formulario Enviado com sucesso");
   return;
 };

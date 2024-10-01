@@ -3,6 +3,8 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const cookieParser = require('cookie-parser');
+const csurf = require('csurf');
 
 mongoose
   .connect(process.env.CONNECTIONSTRING)
@@ -39,6 +41,22 @@ app.use(flash());
 
 app.set("views", path.resolve(__dirname, "src", "views"));
 app.set("view engine", "ejs");
+
+// **** CSRF - CONFIGURAÇÃO ****
+
+// Middleware para parsear cookies
+app.use(cookieParser());
+
+// Configuração do csurf
+const csrfProtection = csurf({ cookie: true });
+app.use(csrfProtection);
+
+// Configurações adicionais, como body-parser e rotas
+app.use(express.urlencoded({ extended: true })); // Para parsing de formulários
+app.use(express.json());
+
+// **** CSRF -  FIM DA CONFIGURAÇÃO ****
+
 
 // Nossos próprios middlewares
 app.use(middlewareGlobal);
