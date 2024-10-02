@@ -18,7 +18,7 @@ class Login {
 
   async register(){
     this.valida()
-    if (this.errors.lenght > 0 ) {
+    if (this.errors.length > 0 ) {
       return
     }
     try {
