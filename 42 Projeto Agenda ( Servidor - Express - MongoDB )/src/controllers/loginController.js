@@ -1,3 +1,5 @@
+const Login = require('../models/LoginModel')
+
 exports.index = (req, res) => {
   // **** TESTE SE A SESSÃO ESTÁ SENDO SALVA NO BANCO DE DADOS ****
   // req.session.usuario = { nome: "Moises", logado: true }
@@ -13,5 +15,36 @@ exports.index = (req, res) => {
   // console.log(req.flash('erro'))
   
   res.render('login', {csrfToken: req.csrfToken()});
-  return;
+};
+
+exports.register = async (req, res) => {
+
+  try {
+    const login = new Login(req.body)
+    await login.register()
+  
+    if(login.errors.length > 0 ) {
+      req.flash('errors', login.errors)
+      req.session.save(function(){
+      //res.redirect('back')
+      res.location('/login/index');
+      res.status(302).send();
+      return
+      })
+      return
+    }
+  
+      req.flash('success', 'Seu usuário foi criado com sucesso!')
+      req.session.save(function(){
+      //res.redirect('back')
+      res.location('/login/index');
+      res.status(302).send();
+      return
+      })
+    
+  } catch (error) {
+    console.log(error)
+    res.render('404')
+  }
+
 };

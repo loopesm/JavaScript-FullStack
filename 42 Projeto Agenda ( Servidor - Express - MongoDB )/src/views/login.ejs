@@ -12,26 +12,33 @@
 
         <div class="col-lg border border-primary rounded p-4 m-1">
           <h4 class="text-center mb-3">Faça seu Cadastro aqui:</h4>
+
           <form action="/login/register" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <div class="mb-3">
-              <label for="email" class="form-label">Seu melhor E-mail:</label>
+            <div class="form-group mb-3">
+              <label for="email-register" class="form-label">Seu melhor E-mail:</label>
               <input
                 type="email"
                 class="form-control border border-primary"
-                id="email"
+                name="email"
+                id="email-register"
               />
             </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">Senha:</label>
+            <div class="form-group mb-3">
+              <label for="password-register" class="form-label">Senha:</label>
               <input
                 type="password"
                 class="form-control border border-primary"
-                id="password"
+                name="password"
+                id="password-register"
               />
             </div>
+
+            <%- include('includes/messages') %>
+
             <button type="submit" class="btn btn-primary">Cadastrar</button>
           </form>
+
         </div>
 
         <div class="col-lg border border-primary rounded p-4 m-1">
@@ -39,19 +46,21 @@
           <form action="/login/login" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <div class="mb-3">
-              <label for="email" class="form-label">E-mail:</label>
+              <label for="email-login" class="form-label">E-mail:</label>
               <input
                 type="email"
                 class="form-control border border-primary"
-                id="email"
+                name="email"
+                id="email-login"
               />
             </div>
             <div class="mb-3">
-              <label for="password" class="form-label">Senha:</label>
+              <label for="password-login" class="form-label">Senha:</label>
               <input
                 type="password"
                 class="form-control border border-primary"
-                id="password"
+                name="password"
+                id="password-login"
               />
             </div>
             <button type="submit" class="btn btn-primary">Entrar</button>
