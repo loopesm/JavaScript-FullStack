@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const { checkCsrError } = require('../middlewares/middleware');
+const bcryptjs = require('bcryptjs')
 
 const LoginSchema = new mongoose.Schema({
   email: { type: String, required: true },
@@ -16,16 +16,46 @@ class Login {
     this.user = null
   }
 
+  async login(){
+
+    this.valida()
+
+    if (this.errors.length > 0 ) {
+      return
+    }
+
+    this.user = await LoginModel.findOne({email: this.body.email})
+
+    if(!this.user) {
+      this.errors.push("Usuário não existe")
+      return
+    }
+
+    if(bcryptjs.compareSync(this.body.password, this.user.password)) {
+      this.errors.push("Senha Inválida")
+      this.user = null
+      return
+    }
+  
+  }
+    
+
   async register(){
     this.valida()
     if (this.errors.length > 0 ) {
       return
     }
-    try {
-      this.user = await LoginModel.create(this.body)
-    } catch (e) {
-      console.log(e)
+
+    await this.userExists()
+
+    if (this.errors.length > 0 ) {
+      return
     }
+
+    const salt = bcryptjs.genSaltSync();
+    this.body.password = bcryptjs.hashSync(this.body.password, salt)
+
+    this.user = await LoginModel.create(this.body)
     
   }
 
@@ -40,6 +70,13 @@ class Login {
     if(this.body.password.length < 8 || this.body.password.length > 25 && this.body.password == '')  {
       this.errors.push('A senha precisa ter entre 8 e 25 caracteres')
     }
+  }
+
+  async userExists() {
+    this.user = await LoginModel.findOne({email: this.body.email})
+
+    if(this.user) this.errors.push('Usuário já existe.')
+
   }
 
   cleanUp() {

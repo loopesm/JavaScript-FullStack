@@ -8,6 +8,8 @@
       <h1 class="text-center">Faça Login ou Cadastre-se</h1>
       <p class="text-center lead">Chega de perder seus contatos!</p>
 
+      <%- include('includes/messages') %>
+
       <div class="row">
 
         <div class="col-lg border border-primary rounded p-4 m-1">
@@ -33,8 +35,6 @@
                 id="password-register"
               />
             </div>
-
-            <%- include('includes/messages') %>
 
             <button type="submit" class="btn btn-primary">Cadastrar</button>
           </form>
