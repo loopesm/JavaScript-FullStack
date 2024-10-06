@@ -25,8 +25,10 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.resolve(__dirname, "public")));
 
+const mySecretKeySession = process.env.sessionSecret
+
 const sessionOptions = session({
-  secret: "qualquer-chave-segredo",
+  secret: mySecretKeySession,
   store: new MongoStore({ mongoUrl: process.env.CONNECTIONSTRING }),
   resave: false,
   saveUninitialized: false,

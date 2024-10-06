@@ -27,7 +27,7 @@ class Login {
 
     this.user = await LoginModel.findOne({email: this.body.email})
 
-    if(!this.user) {
+    if(!this.user) { 
       this.errorsLogin.push("Usuário não existe")
       return
     }
@@ -105,7 +105,6 @@ class Login {
       password: this.body.password
     }
   }
-
 }
 
 module.exports = Login;
