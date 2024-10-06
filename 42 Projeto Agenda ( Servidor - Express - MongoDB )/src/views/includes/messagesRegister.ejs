@@ -1,10 +1,10 @@
-<% if (errors.length > 0) { %>
+<% if (errorsRegister.length > 0) { %>
 
 <div class="row">
     <div class="col my-2">
       <div class="alert alert-danger text-center">
 
-        <% errors.forEach( erro => { %>
+        <% errorsRegister.forEach( erro => { %>
             <%= erro %> <br>
         <% }); %>
 
@@ -14,13 +14,13 @@
 
   <% } %>
 
-  <% if (success.length > 0) { %>
+  <% if (successRegister.length > 0) { %>
 
     <div class="row">
         <div class="col my-2">
           <div class="alert alert-success text-center">
     
-            <% success.forEach( success => { %>
+            <% successRegister.forEach( success => { %>
                 <%= success %> <br>
             <% }); %>
     

@@ -12,27 +12,28 @@ const LoginModel = mongoose.model('Login', LoginSchema);
 class Login {
   constructor(body) {
     this.body = body;
-    this.errors = [];
+    this.errorsRegister = [];
+    this.errorsLogin = [];
     this.user = null
   }
 
   async login(){
 
-    this.valida()
+    this.validaLogin()
 
-    if (this.errors.length > 0 ) {
+    if (this.errorsLogin.length > 0 ) {
       return
     }
 
     this.user = await LoginModel.findOne({email: this.body.email})
 
     if(!this.user) {
-      this.errors.push("Usuário não existe")
+      this.errorsLogin.push("Usuário não existe")
       return
     }
 
-    if(bcryptjs.compareSync(this.body.password, this.user.password)) {
-      this.errors.push("Senha Inválida")
+    if(!bcryptjs.compareSync(this.body.password, this.user.password)) {
+      this.errorsLogin.push("Senha Inválida")
       this.user = null
       return
     }
@@ -42,13 +43,13 @@ class Login {
 
   async register(){
     this.valida()
-    if (this.errors.length > 0 ) {
+    if (this.errorsRegister.length > 0 ) {
       return
     }
 
     await this.userExists()
 
-    if (this.errors.length > 0 ) {
+    if (this.errorsRegister.length > 0 ) {
       return
     }
 
@@ -63,19 +64,32 @@ class Login {
     this.cleanUp();
     // E-mail precisa ser válida
     if(!validator.isEmail(this.body.email) && validator.isEmail(this.body.email) == ''  ) {
-      this.errors.push('Email inválido')
+      this.errorsRegister.push('Email inválido')
     }
 
     // A senha precisa ter entre 8 e 25 caracteres
     if(this.body.password.length < 8 || this.body.password.length > 25 && this.body.password == '')  {
-      this.errors.push('A senha precisa ter entre 8 e 25 caracteres')
+      this.errorsRegister.push('A senha precisa ter entre 8 e 25 caracteres')
+    }
+  }
+
+  validaLogin(){
+    this.cleanUp();
+    // E-mail precisa ser válida
+    if(!validator.isEmail(this.body.email) && validator.isEmail(this.body.email) == ''  ) {
+      this.errorsLogin.push('Email inválido')
+    }
+
+    // A senha precisa ter entre 8 e 25 caracteres
+    if(this.body.password.length < 8 || this.body.password.length > 25 && this.body.password == '')  {
+      this.errorsLogin.push('A senha precisa ter entre 8 e 25 caracteres')
     }
   }
 
   async userExists() {
     this.user = await LoginModel.findOne({email: this.body.email})
 
-    if(this.user) this.errors.push('Usuário já existe.')
+    if(this.user) this.errorsRegister.push('Usuário já existe.')
 
   }
 

@@ -23,8 +23,8 @@ exports.register = async (req, res) => {
     const login = new Login(req.body)
     await login.register()
   
-    if(login.errors.length > 0 ) {
-      req.flash('errors', login.errors)
+    if(login.errorsRegister.length > 0 ) {
+      req.flash('errorsRegister', login.errorsRegister)
       req.session.save(function(){
       //res.redirect('back')
       res.location('/login/index');
@@ -34,7 +34,7 @@ exports.register = async (req, res) => {
       return
     }
   
-      req.flash('success', 'Seu usuário foi criado com sucesso!')
+      req.flash('successRegister', 'Seu usuário foi criado com sucesso!')
       req.session.save(function(){
       //res.redirect('back')
       res.location('/login/index');
@@ -55,8 +55,8 @@ exports.login = async (req, res) => {
     const login = new Login(req.body)
     await login.login()
   
-    if(login.errors.length > 0 ) {
-      req.flash('errors', login.errors)
+    if(login.errorsLogin.length > 0 ) {
+      req.flash('errorsLogin', login.errorsLogin)
       req.session.save(function(){
       //res.redirect('back')
       res.location('/login/index');
@@ -66,11 +66,11 @@ exports.login = async (req, res) => {
       return
     }
   
-      req.flash('success', 'Seu usuário foi criado com sucesso!')
+      req.flash('successLogin', 'Acesso ao sistema liberado!')
       req.session.user = login.user
       req.session.save(function(){
       //res.redirect('back')
-      res.location('/login/index');
+      res.location('/login/login');
       res.status(302).send();
       return
       })
