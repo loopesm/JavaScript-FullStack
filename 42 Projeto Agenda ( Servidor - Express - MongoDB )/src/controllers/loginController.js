@@ -72,7 +72,7 @@ exports.login = async (req, res) => {
       req.flash('errorsLogin', login.errorsLogin)
       req.session.save(function(){
       //res.redirect('back')
-      res.location('/login/index');
+      res.location('/');
       res.status(302).send();
       return
       })
