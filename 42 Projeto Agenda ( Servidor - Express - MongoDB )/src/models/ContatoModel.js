@@ -3,8 +3,9 @@ const validator = require("validator");
 const bcryptjs = require("bcryptjs");
 
 const ContatosSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  phone: { type: String, required: true },
   email: { type: String, required: true },
-  password: { type: String, required: true },
 });
 
 const ContatosModel = mongoose.model("Contatos", ContatosSchema);
@@ -18,7 +19,7 @@ class Contatos {
 
 
 
-  
+
 }
 
 module.exports = Contatos;

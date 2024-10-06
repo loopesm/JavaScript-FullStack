@@ -1,4 +1,5 @@
-<%- include('includes/head'); %> <%- include('includes/navBar'); %>
+<%- include('includes/head'); %> 
+<%- include('includes/navBar'); %>
 
 <div class="container">
   <div class="row">
@@ -7,6 +8,56 @@
     <div class="col-lg-8 my-2">
       <h1 class="text-center">Olá <%= user.name %></h1>
       <p class="text-center lead">Aqui você pode gerênciar seus contatos da forma que preferir</p>
+
+      <div>
+        <form action="/contato/cadastro" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          <div class="form-group mb-3">
+            <label for="contato" class="form-label">Nome do Contato:</label>
+            <input
+              type="text"
+              class="form-control border border-primary"
+              name="contato"
+              id="contato"
+              required
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="contatoLastName" class="form-label">Sobrenome do Contato:</label>
+            <input
+              type="text"
+              class="form-control border border-primary"
+              name="contatoLastName"
+              id="contatoLastName"
+              required
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="phoneContato" class="form-label">Telefone:</label>
+            <input
+              type="tel"
+              class="form-control border border-primary"
+              name="phoneContato"
+              id="phoneContato"
+              placeholder="(99) 9 9999-9999"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label for="emailContato" class="form-label">E-mail:</label>
+            <input
+              type="email"
+              class="form-control border border-primary"
+              name="emailContato"
+              id="emailContato"
+            />
+          </div>
+
+      </div>
+
+        <%- include('includes/messagesRegister') %>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
 
 
     </div>
