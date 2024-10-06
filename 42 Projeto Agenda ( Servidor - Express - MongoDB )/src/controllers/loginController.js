@@ -12,11 +12,23 @@ exports.index = (req, res) => {
   // req.flash('success', "Sucesso na requisição")
   // req.flash('error', 'Erro na requisição')
 
-  // console.log(req.flash('erro'))
-  console.log(req.session.user)
-  
-  res.render('login', {csrfToken: req.csrfToken()});
+  // console.log(req.flash('erro'))  
+  if(req.session.user){
+    res.render('logado')
+  } else {
+    res.render('login', {csrfToken: req.csrfToken()})
+  }
 };
+
+exports.logado = (req,res) => {
+  if(req.session.user){
+    res.render('logado')
+    return
+  }
+  else {
+    res.render('404')
+  }
+}
 
 exports.register = async (req, res) => {
 
@@ -28,7 +40,7 @@ exports.register = async (req, res) => {
       req.flash('errorsRegister', login.errorsRegister)
       req.session.save(function(){
       //res.redirect('back')
-      res.location('/login/index');
+      res.location('/');
       res.status(302).send();
       return
       })
@@ -38,7 +50,7 @@ exports.register = async (req, res) => {
       req.flash('successRegister', 'Seu usuário foi criado com sucesso!')
       req.session.save(function(){
       //res.redirect('back')
-      res.location('/login/index');
+      res.location('/');
       res.status(302).send();
       return
       })
@@ -71,7 +83,7 @@ exports.login = async (req, res) => {
       req.session.user = login.user
       req.session.save(function(){
       //res.redirect('back')
-      res.location('/login/login');
+      res.location('/login/logado');
       res.status(302).send();
       return
       })
@@ -82,3 +94,10 @@ exports.login = async (req, res) => {
   }
 
 };
+
+exports.logout = function(req,res) {
+  req.session.destroy()
+  res.location('/');
+  res.status(302).send();
+  return
+}

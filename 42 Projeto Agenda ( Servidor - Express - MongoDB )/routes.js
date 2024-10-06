@@ -2,16 +2,16 @@ const express = require("express");
 const route = express.Router();
 
 // CONTROLLERS
-const homeController = require("./src/controllers/homeController");
 const loginController = require("./src/controllers/loginController");
 
-// ROTAS HOME
-route.get("/", homeController.index);
 
 // ROTAS LOGIN
-route.get("/login/index", loginController.index)
+route.get("/", loginController.index)
+// route.get("/login/index", loginController.login)
 route.post("/login/register", loginController.register)
 route.post("/login/login", loginController.login)
+route.get("/login/logado", loginController.logado)
+route.get("/login/logout", loginController.logout)
 
 
 
