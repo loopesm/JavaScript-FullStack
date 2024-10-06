@@ -19,7 +19,7 @@ const flash = require("connect-flash");
 
 const routes = require("./routes");
 const path = require("path");
-const { middlewareGlobal, checkCsrError, csrfMiddleware } = require("./src/middlewares/middleware");
+const { middlewareGlobal, checkCsrError, csrfMiddleware, erroServidor } = require("./src/middlewares/middleware");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -64,6 +64,7 @@ app.use(express.json());
 app.use(middlewareGlobal);
 app.use(checkCsrError)
 app.use(csrfMiddleware)
+app.use(erroServidor);
 app.use(routes);
 
 app.on("Conectado", () => {
