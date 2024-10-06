@@ -13,6 +13,7 @@ exports.index = (req, res) => {
   // req.flash('error', 'Erro na requisição')
 
   // console.log(req.flash('erro'))
+  console.log(req.session.user)
   
   res.render('login', {csrfToken: req.csrfToken()});
 };
