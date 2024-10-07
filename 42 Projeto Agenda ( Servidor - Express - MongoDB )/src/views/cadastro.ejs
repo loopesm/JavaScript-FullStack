@@ -6,19 +6,19 @@
     <div class="col-lg-2"></div>
 
     <div class="col-lg-8 my-2">
-      <h1 class="text-center">Olá <%= user.name %></h1>
-      <p class="text-center lead">Aqui você pode gerênciar seus contatos da forma que preferir</p>
+      <h1 class="text-center">Cadastro de Contatos</h1>
+      <p class="text-center lead">Preencha todas as informações do seu contato.</p>
 
       <div>
-        <form action="/contato/cadastro" method="POST">
+        <form action="/contato/register" method="POST">
           <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <div class="form-group mb-3">
-            <label for="contato" class="form-label">Nome do Contato:</label>
+            <label for="contatoName" class="form-label">Nome do Contato:</label>
             <input
               type="text"
               class="form-control border border-primary"
-              name="contato"
-              id="contato"
+              name="contatoName"
+              id="contatoName"
               required
             />
           </div>
@@ -29,7 +29,6 @@
               class="form-control border border-primary"
               name="contatoLastName"
               id="contatoLastName"
-              required
             />
           </div>
           <div class="form-group mb-3">
