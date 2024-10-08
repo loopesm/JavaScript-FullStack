@@ -1,10 +1,14 @@
+const { create } = require("connect-mongo");
 const mongoose = require("mongoose");
 const validator = require("validator");
 
 const ContatosSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  phone: { type: String, required: true },
-  email: { type: String, required: true },
+  //userId: user._id,
+  contatoName: { type: String, required: true },    
+  contatoLastName: { type: String, required: false, default: '' },
+  phoneContato: { type: String, required: false, default: '' },
+  emailContato: { type: String, required: false, default: '' },
+  createdAt: { type: Date, default: Date.now },
 });
 
 const ContatosModel = mongoose.model("Contatos", ContatosSchema);
@@ -23,14 +27,14 @@ class Contatos {
       return
     }
 
-    this.contato = await ContatosModel.create(this.body)
+    this.contatos = await ContatosModel.create(this.body)
 
   }
 
   validaContato(){
     this.cleanUp();
     // E-mail precisa ser válida
-    if( this.body.emailContato && !validator.isEmail(this.body.emailContato) && validator.isEmail(this.body.emailContato) == ''  ) {
+    if( this.body.emailContato && !validator.isEmail(this.body.emailContato)) {
       this.errorsContatos.push('Email inválido.')
     }
     if(!this.body.contatoName) {
