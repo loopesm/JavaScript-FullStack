@@ -31,6 +31,16 @@ class Contatos {
 
   }
 
+  async edit () {
+
+  }
+
+  async buscaById (id) {
+    if(typeof id !== 'string') return
+    const userId = await ContatosModel.findById(id)
+    return userId
+  }
+
   validaContato(){
     this.cleanUp();
     // E-mail precisa ser válida

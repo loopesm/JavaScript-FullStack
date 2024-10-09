@@ -1,10 +1,10 @@
-const ContatoModel = require("../models/ContatoModel");
+const Contatos = require("../models/ContatoModel");
 
 exports.index = (req, res) => {
   if (req.session.user) {
-    const userIdMoises = req.session.user._id;
-    res.render("cadastro");
-    console.log(userIdMoises);
+    res.render("cadastro", {
+      contato: {}
+    });
   } else {
     try {
       res.render("login", { csrfToken: req.csrfToken() });
@@ -16,7 +16,7 @@ exports.index = (req, res) => {
 
 exports.register = async (req, res) => {
   try {
-    const contatos = new ContatoModel(req.body);
+    const contatos = new Contatos(req.body);
     await contatos.register();
   
     if (contatos.errorsContatos.length > 0) {
@@ -30,8 +30,7 @@ exports.register = async (req, res) => {
   
     req.flash("successContatos", "Contato criado com sucesso!");
     req.session.save(function () {
-      res.redirect(req.get("Referrer"));
-      console.log(req.body)
+      res.redirect(`/contato/index/${contatos.contatos._id}`);
       return
     });
   
@@ -41,4 +40,18 @@ exports.register = async (req, res) => {
     return res.render("404");
   }
 
+};
+
+exports.edit = async (req, res) => {
+
+  if(!req.params.id) return res.render("404")
+
+  const contatos = new Contatos();
+  
+  const contato = await contatos.buscaById(req.params.id)
+  console.log(contato)
+
+  if(!contato) return res.render("404")
+
+  res.render("cadastro", { contato })
 };
