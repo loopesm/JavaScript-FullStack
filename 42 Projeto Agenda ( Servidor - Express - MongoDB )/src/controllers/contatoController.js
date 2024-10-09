@@ -1,8 +1,10 @@
-const Contato = require("../models/ContatoModel");
+const ContatoModel = require("../models/ContatoModel");
 
 exports.index = (req, res) => {
   if (req.session.user) {
+    const userIdMoises = req.session.user._id;
     res.render("cadastro");
+    console.log(userIdMoises);
   } else {
     try {
       res.render("login", { csrfToken: req.csrfToken() });
@@ -14,7 +16,7 @@ exports.index = (req, res) => {
 
 exports.register = async (req, res) => {
   try {
-    const contatos = new Contato(req.body);
+    const contatos = new ContatoModel(req.body);
     await contatos.register();
   
     if (contatos.errorsContatos.length > 0) {
@@ -29,6 +31,7 @@ exports.register = async (req, res) => {
     req.flash("successContatos", "Contato criado com sucesso!");
     req.session.save(function () {
       res.redirect(req.get("Referrer"));
+      console.log(req.body)
       return
     });
   

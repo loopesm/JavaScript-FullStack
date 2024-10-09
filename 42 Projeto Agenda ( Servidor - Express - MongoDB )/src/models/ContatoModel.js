@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 
 const ContatosSchema = new mongoose.Schema({
-  //userId: user._id,
+  userId: { type: String, required: true },
   contatoName: { type: String, required: true },    
   contatoLastName: { type: String, required: false, default: '' },
   phoneContato: { type: String, required: false, default: '' },
