@@ -78,6 +78,18 @@ class Contatos {
     }
   }
 
+async buscaById (id) {
+  if(typeof id !== 'string') return
+  const contato = await ContatosModel.findById(id)
+  return contato
+}
+
+async buscaContatos () {
+  const contatos = await ContatosModel.find()
+  .sort({contatoName: 1})
+  return contatos
+}
+
 
 
 
