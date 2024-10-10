@@ -1,4 +1,5 @@
 const Login = require('../models/LoginModel')
+const Contatos = require('../models/ContatoModel')
 
 exports.index = (req, res) => {
   // **** TESTE SE A SESSÃO ESTÁ SENDO SALVA NO BANCO DE DADOS ****

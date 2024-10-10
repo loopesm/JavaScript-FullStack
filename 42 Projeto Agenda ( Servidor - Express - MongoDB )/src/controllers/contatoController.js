@@ -42,7 +42,7 @@ exports.register = async (req, res) => {
 
 };
 
-exports.edit = async (req, res) => {
+exports.editIndex = async (req, res) => {
 
   if(!req.params.id) return res.render("404")
 
@@ -55,3 +55,31 @@ exports.edit = async (req, res) => {
 
   res.render("cadastro", { contato })
 };
+
+exports.edit = async (req,res) => {
+
+  try {
+    if(!req.params.id) return res.render("404")
+    
+    const contatos = new Contatos(req.body)
+    await contatos.edit(req.params.id);
+  
+    if(contatos.errorsContatos.length > 0) {
+      req.flash("errorsContatos", contatos.errorsContatos);
+      req.session.save(function () {
+        res.redirect(req.get("Referrer"));
+        return
+    });
+    }
+    req.flash("successContatos", "Contato editado com sucesso!");
+    req.session.save(function () {
+    res.redirect(`/contato/index/${contatos.contatos._id}`);
+    });
+    return
+    
+  } catch (error) {
+    console.log(error);
+    return res.render("404");
+  }
+
+}

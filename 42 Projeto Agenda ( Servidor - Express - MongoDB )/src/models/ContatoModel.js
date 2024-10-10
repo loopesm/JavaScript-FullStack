@@ -31,7 +31,13 @@ class Contatos {
 
   }
 
-  async edit () {
+  async edit (id) {
+    if(typeof id !== 'string') return
+    this.validaContato()
+    if(this.errorsContatos.length > 0) {
+      return
+    }
+    this.contatos = await ContatosModel.findByIdAndUpdate(id, this.body, {new: true})
 
   }
 

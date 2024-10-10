@@ -7,12 +7,16 @@
 
     <div class="col-lg-8 my-2">
       <h1 class="text-center">Cadastro de Contatos</h1>
-      <p class="text-center lead"><%= user.name %>, preencha as informações abaixo para cadastrar seu contato.</p>
+      <p class="text-center lead"><%= user.name %>, preencha as informações abaixo para gerência os dados do seu contato.</p>
 
       <%- include('includes/messagesContatos') %>
 
       <div>
-        <form action="/contato/register" method="POST">
+        <% if (contato._id) { %>
+          <form action="/contato/edit/<%= contato._id %>" method="POST">
+        <% } else { %>
+          <form action="/contato/register" method="POST">
+        <% } %>
           <input type="hidden" name="_csrf" value="<%= csrfToken %>">
           <input type="hidden" name="userId" value="<%= user._id %>">
           <div class="form-group mb-3">
