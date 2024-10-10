@@ -15,9 +15,12 @@ exports.index = async (req, res) => {
 
   // console.log(req.flash('erro'))  
   if(req.session.user){
-    const contatos = new Contatos()
-    const contatosDB = await contatos.buscaContatos(req.session.user._id)
-    res.render('logado', { contatos: contatosDB })
+    console.log(req.session.user)
+    const contatos = await new Contatos().buscaContatos(req.session.user._id);
+    const contatosFiltrados = contatos.filter(contato => contato.userId === req.session.user._id);
+
+    res.render('logado', { contatos: contatosFiltrados })
+    console.log(contatos)
   } else {
     res.render('login', {csrfToken: req.csrfToken()})
   }

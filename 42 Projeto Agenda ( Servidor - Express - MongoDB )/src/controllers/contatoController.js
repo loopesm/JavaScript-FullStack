@@ -83,3 +83,19 @@ exports.edit = async (req,res) => {
   }
 
 }
+
+exports.delete = async (req, res) => {
+  try {
+    if(!req.params.id) return res.render("404")
+    const contatos = new Contatos();
+    await contatos.delete(req.params.id);
+    req.flash("successContatos", "Contato deletado com sucesso!");
+    req.session.save(function () {
+      res.redirect("/");
+      return
+    });
+  } catch (error) {
+    console.log(error);
+    return res.render("404");
+  }
+}

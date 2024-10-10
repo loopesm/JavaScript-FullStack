@@ -84,10 +84,17 @@ async buscaById (id) {
   return contato
 }
 
-async buscaContatos () {
-  const contatos = await ContatosModel.find()
+async buscaContatos (userId) {
+  const contatos = await ContatosModel.find({userId: userId})
   .sort({contatoName: 1})
   return contatos
+}
+
+async delete (id) {
+
+  if(typeof id !== 'string') return
+  const contato = await ContatosModel.findByIdAndDelete(id)
+  return contato
 }
 
 
